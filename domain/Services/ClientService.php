@@ -52,6 +52,8 @@ class ClientService
             'city' => $data['city'],
             'image_path' => $data['image_path'] ?? null,
         ]);
+
+        // Mail::to($data['email'])->send(new sendMail($pw));
     }
 
     public function update($id, $data)
