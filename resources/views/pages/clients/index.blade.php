@@ -40,7 +40,7 @@
                                 @foreach ($clients as $client)
                                     <tr id="row{{ $client->id }}">
                                         <td> {{ $client->id }} </td>
-                                        <td> {{ $client->id }} </td>
+                                        <td> <img src="{{ asset('assets/images/defult_pro.png') }}" alt="Client Image" style="width: 100px; height: 100px;"></td>
                                         <td> {{ $client->first_name }} {{ $client->last_name }}</td>
                                         <td> {{ $client->contact }} </td>
                                         <td> {{ $client->email }} </td>
@@ -70,6 +70,7 @@
                                                                 aria-label="Close">&times;</button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <div class="d-flex justify-content-center"><img src="{{ asset('assets/images/defult_pro.png') }}" alt="Client Image" style="width: 100px; height: 100px;"></div>
                                                             <p><strong>First Name :</strong>
                                                                 {{ $client->first_name ?? '---' }}</p>
                                                             <p><strong>Last Name :</strong>
@@ -102,7 +103,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr>
                                     <th>#</th>
                                     <th>Image</th>
@@ -112,7 +113,7 @@
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                         </table>
                     </div>
                 </div>
@@ -122,65 +123,13 @@
 
 </x-app-layout>
 
-{{-- <script>
-    $('body').on('click', '.delete', function() {
-        var id = $(this).attr('data-id')
-        var atr = $(this);
-        var url = '{{ route('client.destroy', ':id') }}';
-        Swal.fire({
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true,
-            title: 'Are You Sure!',
-            text: "You won't be able to revert this!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: url.replace(':id', id),
-                    method: "DELETE",
-                    dataType: "json",
-                    data: {
-                        id: id,
-                        '_token': '{{ csrf_token() }}'
-                    },
-                    beforeSend: function() {
-                        Swal.showLoading();
-                    },
-                    success: function(data) {
-                        if (data.response == "success") {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: data.message,
-                                timer: 3000,
-                                showConfirmButton: false
-                            });
-                            $("#row" + id).remove();
-                        } else if (data.response == "error") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error!',
-                                text: data.message,
-                                timer: 3000,
-                                showConfirmButton: false
-                            });
-                        }
-                    }
-                })
-            }
-        });
-    });
-</script> --}}
-<!-- Add the following script below your existing script -->
+
 <script>
     $('body').on('click', '.delete', function() {
         var id = $(this).attr('data-id');
         var atr = $(this);
         var url = '{{ route('client.destroy', ':id') }}';
 
-        // Use SweetAlert2 for confirmation
         Swal.fire({
             icon: 'warning',
             showCancelButton: true,
