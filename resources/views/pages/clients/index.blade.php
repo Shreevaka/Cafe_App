@@ -16,8 +16,7 @@
                         </div>
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
-                                <a href="{{ route('client.create') }}"
-                                    class="btn bg-primary btn-sm mb-4">+&nbsp; Add
+                                <a href="{{ route('client.create') }}" class="btn bg-primary btn-sm mb-4">+&nbsp; Add
                                     New</a>
                             </div>
                         </div>
@@ -176,7 +175,7 @@
 </script> --}}
 <!-- Add the following script below your existing script -->
 <script>
-    $('body').on('click', '.delete', function () {
+    $('body').on('click', '.delete', function() {
         var id = $(this).attr('data-id');
         var atr = $(this);
         var url = '{{ route('client.destroy', ':id') }}';
@@ -200,10 +199,10 @@
                         id: id,
                         '_token': '{{ csrf_token() }}'
                     },
-                    beforeSend: function () {
+                    beforeSend: function() {
                         Swal.showLoading();
                     },
-                    success: function (data) {
+                    success: function(data) {
                         if (data.response == "success") {
                             Swal.fire({
                                 icon: 'success',
@@ -231,3 +230,17 @@
     });
 </script>
 
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> --}}
+
+{{-- <script>
+    $(document).ready(function() {
+        if ($('#client-list').length) {
+            $('#client-list').DataTable({
+                searching: true,
+                paging: true,
+                pageLength: 7
+            });
+        }
+    });
+</script> --}}
