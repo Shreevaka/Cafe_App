@@ -78,7 +78,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // try {
+        try {
 
             $is_active = isset($request->is_active) ? 1 : 0;
             $request->merge(['is_active' => $is_active]);
@@ -86,9 +86,9 @@ class ClientController extends Controller
             $client = ClientFacade::update($id, $request->all());
 
             return redirect()->route('client.index')->with('success', 'Client Updated Successfully');
-        // } catch (Throwable $th) {
-        //     return redirect()->back()->with('error', 'Something went wrong');
-        // }
+        } catch (Throwable $th) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
